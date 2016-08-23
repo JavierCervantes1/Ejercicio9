@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,6 +37,7 @@ public class Ejercicio9 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtCosto = new javax.swing.JTextField();
         cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +53,8 @@ public class Ejercicio9 extends javax.swing.JFrame {
 
         jLabel3.setText("Costo Total");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 110, 20));
+
+        txtCosto.setEditable(false);
         jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 110, -1));
 
         cmdCalcular.setText("Calcular");
@@ -58,6 +64,14 @@ public class Ejercicio9 extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +96,14 @@ public class Ejercicio9 extends javax.swing.JFrame {
         String res;
         double mon1, mon2, monto, costo, rec;
         
+        if (txtMonIni.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite por favor el monto inicial", "Error", JOptionPane.ERROR_MESSAGE);
+            txtMonIni.requestFocusInWindow();
+        } else if (txtMonFin.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite por favor el monto final", "Error", JOptionPane.ERROR_MESSAGE);
+            txtMonFin.requestFocusInWindow();
+        } else {
+        
         mon1 = Double.parseDouble(txtMonIni.getText());
         mon2 = Double.parseDouble(txtMonFin.getText());
         
@@ -91,8 +113,16 @@ public class Ejercicio9 extends javax.swing.JFrame {
         
         res = String.valueOf(costo);
         txtCosto.setText(res);
-               
+        }      
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        // TODO add your handling code here:
+        txtMonFin.setText("");
+        txtMonIni.setText("");
+        txtCosto.setText("");
+        txtMonIni.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,6 +160,7 @@ public class Ejercicio9 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
